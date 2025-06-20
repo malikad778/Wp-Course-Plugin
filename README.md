@@ -1,125 +1,53 @@
-# WordPress Course Subscription Plugin - Installation and Usage Guide
+# WP Course Plugin
 
-## Overview
+## Description
 
-The WordPress Course Subscription Plugin is a custom solution that restricts access to course content, requiring users to register/login and purchase a subscription through Stripe before accessing courses. This plugin provides:
+The WP Course Plugin is a comprehensive solution for creating and managing online courses directly within your WordPress website. It provides robust features for course creation,  payment processing (via Stripe and PayPal), and content delivery, enabling you to build a powerful e-learning platform.
 
-- Login/registration popup for non-logged-in users
-- Subscription plans management
-- Stripe payment integration
-- Course access control based on subscription status
-- Admin dashboard for managing orders and subscriptions
+## Features
+
+*   **Course Management:** Easily create, edit, and organize courses with multiple lessons and modules (you will need to create a custom post type with 'course' as type).
+*   **Stripe Integration:** Securely process payments for courses using Stripe, supporting various payment methods.
+*   **Subscription Plans:** Offer different subscription tiers for access to courses or course bundles.
+*   **Admin Dashboard:** A dedicated admin area for managing courses, orders, and plugin settings.
+*   **Frontend Templates:** Includes pre-built templates for displaying course listings, checkout pages, and thank you pages.
+*   **Login/Registration Popups:** Integrated popups for seamless user login and registration.
 
 ## Installation
 
-1. Upload the `wp-course-subscription` folder to the `/wp-content/plugins/` directory of your WordPress installation
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Configure the plugin settings as described below
+1.  **Download the Plugin:** Download the `wp-course_2.zip` file.
+2.  **Upload via WordPress:**
+    *   Navigate to `Plugins > Add New` in your WordPress admin dashboard.
+    *   Click on the `Upload Plugin` button.
+    *   Choose the `wp-course_2.zip` file and click `Install Now`.
+3.  **Activate the Plugin:** After installation, click `Activate Plugin`.
+4. ** Add the code from function.php to your theme function.php file
+   
+ ## Configuration
 
-## Configuration
+To fully configure the WP Course Plugin, you will need to set up a custom course type post by installing the ACF plugin and adding a group field and course ( Code included in function.php), your Stripe API keys, and define your course plans.
 
-### Stripe API Setup
+1.  **Stripe API Keys:**
+    *   Log in to your Stripe Dashboard.
+    *   Navigate to `Developers > API keys`.
+    *   Locate your **Publishable key** and **Secret key**.
+    *   In your WordPress admin, go to `WP Course > Settings`.
+    *   Enter your Stripe Publishable Key and Secret Key into the respective fields.
+    *   Save Changes.
+2.  **Create Course Plans:**
+    *   Go to `WP Course > Plans` in your WordPress admin.
+    *   Click `Add New Plan`.
+    *   Define the plan name, description, price, and associated courses.
+    *   Save your plan.
+ 
 
-1. Go to WordPress Admin → Course Subscriptions → Settings
-2. Enter your Stripe API credentials:
-   - Secret Key
-   - Publishable Key
-   - Webhook Secret
+## Usage
 
-To obtain Stripe API keys:
-1. Create a Stripe account at [stripe.com](https://stripe.com)
-2. Navigate to Developers → API keys in your Stripe Dashboard
-3. Copy the Publishable key and Secret key
-4. For the Webhook Secret, go to Developers → Webhooks
-5. Add a new endpoint with the URL shown in the plugin settings
-6. After creating the webhook, reveal and copy the signing secret
+Once configured, you can start offering courses:
 
-### Page Setup
+1.  **Create Courses:** Go to `Courses > Add Courses` to add and manage your course content.
+3.  **Display on Frontend:** Use the shortcode [courses_displays] to display your course offerings on your website pages.
+4.  **Manage Orders:** Monitor and manage student enrollments and payments via `WP Course Subscriptions > Orders`.
 
-Create the following pages in WordPress:
 
-1. **Subscription Plans Page**: A page to display available subscription plans
-2. **Checkout Page**: A page for processing payments
-3. **Thank You Page**: A page to redirect users after successful payment
 
-After creating these pages, select them in the plugin settings under Course Subscriptions → Settings.
-
-## Creating Subscription Plans
-
-1. Go to WordPress Admin → Course Subscriptions → Subscription Plans
-2. Click "Add New" to create a new subscription plan
-3. Fill in the following details:
-   - Name: The name of the subscription plan
-   - Description: A detailed description of what the plan offers
-   - Price: The cost of the subscription in USD
-   - Duration: The length of the subscription in days (use 0 for unlimited)
-   - Status: Active or Inactive
-
-## Managing Orders
-
-1. Go to WordPress Admin → Course Subscriptions → Orders
-2. View all subscription orders with customer details, subscription information, and payment status
-3. Click on an order to view detailed information
-4. Perform actions such as marking orders as completed or processing refunds
-
-## User Experience
-
-### For Visitors:
-1. When a non-logged-in user attempts to access a course, they will see a login/registration popup
-2. After registering or logging in, if they don't have an active subscription, they will be redirected to the subscription plans page
-3. They can select a plan, proceed to checkout, and complete payment through Stripe
-4. Once payment is successful, they gain access to all courses
-
-### For Subscribers:
-1. Logged-in users with active subscriptions can access all course content directly
-2. Their subscription status is automatically checked when accessing course content
-
-## Customization
-
-### CSS Customization
-
-The plugin includes default styles, but you can customize the appearance by adding custom CSS to your theme:
-
-```css
-/* Example customizations */
-.wcs-popup-content {
-    /* Customize popup appearance */
-}
-
-.wcs-button-primary {
-    /* Customize button appearance */
-}
-
-.wcs-restricted-content {
-    /* Customize restricted content message */
-}
-```
-
-### Template Customization
-
-Advanced users can override the plugin templates by copying files from the plugin's `public/templates/` directory to your theme in a `wp-course-subscription/` directory.
-
-## Troubleshooting
-
-### Payment Issues
-- Verify your Stripe API keys are correct
-- Ensure the webhook is properly configured
-- Check that your Stripe account is activated and can accept payments
-
-### Access Control Issues
-- Verify that your courses are using the correct post type ('course')
-- Check that users have active subscriptions in the database
-- Ensure the course access control hooks are not being overridden by other plugins
-
-### Login/Registration Issues
-- Check for JavaScript errors in the browser console
-- Verify that AJAX requests are working properly
-- Ensure there are no conflicts with other authentication plugins
-
-## Support
-
-For additional support or customization requests, please contact the plugin developer.
-
-## License
-
-This plugin is licensed for your exclusive use and may not be redistributed without permission.
