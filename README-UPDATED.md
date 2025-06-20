@@ -1,4 +1,4 @@
-# WordPress Course Subscription Plugin - Installation and Usage Guide
+# WordPress Course Subscription Plugin - Updated Installation Guide
 
 ## Overview
 
@@ -15,6 +15,14 @@ The WordPress Course Subscription Plugin is a custom solution that restricts acc
 1. Upload the `wp-course-subscription` folder to the `/wp-content/plugins/` directory of your WordPress installation
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin settings as described below
+
+## Important Changes in This Version
+
+This version includes the following fixes:
+- Bundled Stripe PHP SDK to eliminate dependency errors
+- Improved error handling for Stripe integration
+- Added PHP session management for cart functionality
+- Enhanced plugin activation reliability
 
 ## Configuration
 
@@ -74,32 +82,12 @@ After creating these pages, select them in the plugin settings under Course Subs
 1. Logged-in users with active subscriptions can access all course content directly
 2. Their subscription status is automatically checked when accessing course content
 
-## Customization
-
-### CSS Customization
-
-The plugin includes default styles, but you can customize the appearance by adding custom CSS to your theme:
-
-```css
-/* Example customizations */
-.wcs-popup-content {
-    /* Customize popup appearance */
-}
-
-.wcs-button-primary {
-    /* Customize button appearance */
-}
-
-.wcs-restricted-content {
-    /* Customize restricted content message */
-}
-```
-
-### Template Customization
-
-Advanced users can override the plugin templates by copying files from the plugin's `public/templates/` directory to your theme in a `wp-course-subscription/` directory.
-
 ## Troubleshooting
+
+### Plugin Activation Issues
+- If you encounter any activation errors, please check your PHP error logs
+- Ensure your server meets the minimum requirements: PHP 7.2+ and WordPress 5.0+
+- The plugin now includes the Stripe PHP SDK, so no additional installation is required
 
 ### Payment Issues
 - Verify your Stripe API keys are correct
@@ -110,11 +98,6 @@ Advanced users can override the plugin templates by copying files from the plugi
 - Verify that your courses are using the correct post type ('course')
 - Check that users have active subscriptions in the database
 - Ensure the course access control hooks are not being overridden by other plugins
-
-### Login/Registration Issues
-- Check for JavaScript errors in the browser console
-- Verify that AJAX requests are working properly
-- Ensure there are no conflicts with other authentication plugins
 
 ## Support
 
